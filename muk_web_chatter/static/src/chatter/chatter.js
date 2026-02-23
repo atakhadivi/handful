@@ -1,12 +1,11 @@
-import { patch } from '@web/core/utils/patch';
-import { browser } from '@web/core/browser/browser';
+import { patch } from "@web/core/utils/patch";
+import { browser } from "@web/core/browser/browser";
 
-import { Chatter } from '@mail/chatter/web_portal/chatter';
-import { RecipientsList } from '@muk_web_chatter/core/recipients_list/recipients_list';
+import { Chatter } from "@mail/chatter/web_portal/chatter";
 
 patch(Chatter.prototype, {
     setup() {
-        super.setup(...arguments);
+        super.setup();
         const showNotificationMessages = browser.localStorage.getItem(
             'muk_web_chatter.notifications'
         );
@@ -14,7 +13,6 @@ patch(Chatter.prototype, {
             showNotificationMessages != null ? 
             JSON.parse(showNotificationMessages) : true
         );
-        this.state.notifyInternalFollowers = false;
     },
     onClickNotificationsToggle() {
         const showNotificationMessages = !this.state.showNotificationMessages;
@@ -25,6 +23,4 @@ patch(Chatter.prototype, {
     },
 });
 
-Object.assign(Chatter.components, {
-    RecipientsList,
-});
+
