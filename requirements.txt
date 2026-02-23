@@ -1,5 +1,3 @@
 boto3
 dropbox
-nextcloud_client
-pandas
-numpy
+nextcloud-api-wrapper
